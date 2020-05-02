@@ -9,7 +9,29 @@
 body {
   background-color: $grey;
   color: $white;
+  overflow-x: hidden;
   @include ffamily;
+
+  #background {
+    display: block;
+    position: absolute;
+    z-index: -1;
+    bottom: -30vh;
+    left: 50vw;
+    right: 0;
+    top: 0;
+    height: 130vh;
+    width: 100vw;
+    object-fit: cover;
+    object-position: left;
+  }
+
+  img {
+    position: absolute;
+    top: 5vh;
+    left: 0;
+    width: 250px;
+  }
 
   .section-inner {
     padding: 60px 20px;
@@ -76,6 +98,7 @@ body {
             &:hover,
             &.active {
               border-color: $white;
+              background: darken($grey, 8);
             }
 
             &:last-child {
@@ -105,4 +128,24 @@ h1 {
 
 .hidden {
   display: none;
+}
+
+@media screen and (max-width: 1256px) {
+  body {
+    img {
+      display: none;
+    }
+
+    .h1-wrapper {
+      display: flex;
+      align-items: flex-end;
+
+      img {
+        margin-left: 30px;
+        width: 150px;
+        position: relative;
+        display: block;
+      }
+    }
+  }
 }
