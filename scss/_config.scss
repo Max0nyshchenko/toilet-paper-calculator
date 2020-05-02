@@ -1,0 +1,10 @@
+$grey: #282828;
+$white: #fff;
+
+$font-size-md: 20px;
+$font-size-lg: 36px;
+$font-size-xl: 48px;
+
+@mixin ffamily {
+  font-family: Arial, Helvetica, sans-serif;
+}
