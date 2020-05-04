@@ -87,10 +87,10 @@ class Drop {
   show() {
     this.element = document.createElement('div');
     this.element.className += 'rainDrop';
-    this.element.style.top = this.yPosition + 'px';
+    this.element.style.top = this.yPosition - 50 + 'px';
     this.element.style.left = this.xPosition + 'px';
-    this.element.style.width = this.dropWidth / 2 + 'px';
-    this.element.style.height = this.dropHeight + 'px';
+    this.element.style.width = this.dropWidth + 'px';
+    this.element.style.height = this.dropHeight / 2 + 'px';
 
     let el = document.getElementById('drop-section');
     el.appendChild(this.element);
@@ -99,9 +99,9 @@ class Drop {
   fall() {
     const makeItRain = () => {
       this.yPosition += this.dropSpeed;
-      this.element.style.top = this.yPosition + 'px';
+      this.element.style.top = this.yPosition - 50 + 'px';
 
-      if (this.yPosition < window.innerHeight * 2) {
+      if (this.yPosition < window.innerHeight * 1.3) {
         requestAnimationFrame(makeItRain);
       } else {
         this.yPosition = -10;
@@ -116,7 +116,7 @@ class Drop {
 // complete rain
 const pageWidth = window.innerWidth;
 const pageHeight = window.innerHeight;
-const defaultDropNumber = 300;
+const defaultDropNumber = 850;
 
 function makeItRain(num) {
   let elments = document.getElementById('drop-section');
@@ -128,13 +128,16 @@ function makeItRain(num) {
   for (let i = 0; i < num; i++) {
     let randomX = Math.floor(Math.random() * pageWidth);
     let randomY = Math.floor(Math.random() * pageHeight);
-    let dropSpeed = Math.floor(Math.random() * (25 - 5)) + 1;
-    let dropWidht = Math.floor(Math.random() * (dropSpeed / 10 - 1)) + 1;
-    let dropHeight = Math.floor(Math.random() * (dropSpeed * 2 - 3)) + 3;
+    let dropSpeed = Math.floor(Math.random() * 25 - 5) + 50;
+    let dropWidht = Math.floor((Math.random() * dropSpeed) / 20);
+    let dropHeight = Math.floor(Math.random() * dropSpeed);
     let d = new Drop(randomX, randomY, dropSpeed, dropWidht, dropHeight);
+    let a = new Drop(randomX, randomY, dropSpeed, dropWidht, dropHeight);
 
     d.show();
     d.fall();
+    a.show();
+    a.fall();
   }
 }
 
